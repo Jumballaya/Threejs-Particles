@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls, RGBELoader } from "three/examples/jsm/Addons.js";
-import { Pane } from "tweakpane";
+import { FolderApi, Pane } from "tweakpane";
 
 export class App {
   private threejs: THREE.WebGLRenderer;
@@ -32,12 +32,7 @@ export class App {
     this.threejs.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(this.threejs.domElement);
 
-    this.camera.position.set(400, 200, 400);
-    // this.camera.position.set(
-    //   -408.5944710487976,
-    //   259.17825010251136,
-    //   -354.7917599129882
-    // );
+    this.camera.position.set(100, 0, 100);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     this.controls.enableDamping = true;
@@ -102,13 +97,12 @@ export class App {
     this.threejs.render(this.scene, this.camera);
   }
 
-  protected onStep(delta: number, elapse: number) {}
+  // deltaTime and totalTime
+  protected onStep(_: number, __: number) {}
   protected onRender() {}
-  protected async onSetupProject(folder: any) {}
+  protected async onSetupProject(_: FolderApi) {}
 
   private handleWindowResize(): void {
-    const dpr = 1;
-
     const canvas = this.threejs.domElement;
     canvas.style.width = window.innerWidth + "px";
     canvas.style.height = window.innerHeight + "px";
