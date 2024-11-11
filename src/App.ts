@@ -85,6 +85,10 @@ export class App {
     return this.scene;
   }
 
+  public get Camera() {
+    return this.camera;
+  }
+
   public step() {
     const dt = this.clock.getDelta();
     this.onStep(dt, this.clock.getElapsedTime());

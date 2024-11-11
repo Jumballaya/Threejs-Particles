@@ -1,8 +1,8 @@
-import { FireworksApp } from "./FireworksApp";
+import { CampfireApp } from "./CampfireApp";
 import "./style.css";
 
 async function main() {
-  const app = new FireworksApp();
+  const app = new CampfireApp();
   await app.initialize();
 
   const loop = () => {

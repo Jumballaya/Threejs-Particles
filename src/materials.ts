@@ -111,3 +111,18 @@ export function createTrailMaterial() {
     blending: THREE.NormalBlending,
   });
 }
+
+export function groundMaterial() {
+  const texture = new THREE.TextureLoader().load("/textures/whitesquare.png");
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(500, 500);
+  texture.anisotropy = 16;
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    map: texture,
+    metalness: 0.5,
+    roughness: 0.6,
+  });
+  return material;
+}

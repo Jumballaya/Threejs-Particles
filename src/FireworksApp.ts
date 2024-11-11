@@ -18,6 +18,8 @@ export class FireworksApp extends App {
     super();
     this.popMaterial = createPopMaterial();
     this.trailMaterial = createTrailMaterial();
+    this.Camera.position.set(100, 0, 100);
+    this.Camera.lookAt(new THREE.Vector3(0, 0, 0));
   }
 
   async onSetupProject(_: FolderApi) {
