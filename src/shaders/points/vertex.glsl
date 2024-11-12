@@ -3,6 +3,7 @@ attribute vec2 particleData; // [ id, life ]
 
 varying vec4 v_color;
 varying float v_angle;
+varying vec3 v_worldPosition;
 
 uniform float time;
 uniform sampler2D sizeOverLife;
@@ -25,4 +26,5 @@ void main() {
   v_color = color;
   v_color.a *= twinkle;
   v_angle = spinSpeed * time + id * 6.28;
+  v_worldPosition = (modelMatrix * vec4(position, 1.0)).xyz;
 }

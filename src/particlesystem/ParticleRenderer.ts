@@ -21,6 +21,8 @@ export class ParticleRenderer {
     this.material = material;
     this.emitterParams = emitter;
 
+    this.geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 1000);
+
     const pos = new Float32Array(emitter.maxParticles * 3);
     const particleData = new Float32Array(emitter.maxParticles * 2);
 

@@ -3,6 +3,7 @@ import { math } from "../math";
 import { Particle } from "./Particle";
 import { ParticleRenderer } from "./ParticleRenderer";
 import { EmitterShape, PointEmitterShape } from "./EmitterShape";
+import { ParticleAttractor } from "./ParticleAttractor";
 
 export type EmitterParams = {
   maxParticles: number;
@@ -17,6 +18,7 @@ export type EmitterParams = {
   drag: number;
   spinSpeed: number;
   shape: EmitterShape;
+  attractors: ParticleAttractor[];
 };
 
 export const defaultEmitterParams: () => EmitterParams = () => ({
@@ -32,6 +34,7 @@ export const defaultEmitterParams: () => EmitterParams = () => ({
   spinSpeed: 0,
   velocityVariance: 0,
   shape: new PointEmitterShape(),
+  attractors: [],
 });
 
 type EmitterCallback = (p: Particle) => void;
@@ -144,6 +147,16 @@ export class ParticleEmitter {
       forces.add(math.G);
     }
     forces.add(p.velocity.clone().multiplyScalar(-this.params.drag));
+
+    for (const attractor of this.params.attractors) {
+      const dir = attractor.position.clone().sub(p.position);
+      const dist = dir.length();
+      dir.normalize();
+      const attractorForce =
+        attractor.intensity / (1 + (dist / attractor.radius) ** 2);
+      forces.add(dir.multiplyScalar(attractorForce));
+    }
+
     p.velocity.add(forces.multiplyScalar(deltaTime));
     const displacement = p.velocity.clone().multiplyScalar(deltaTime);
     p.position.add(displacement);
