@@ -49,11 +49,16 @@ export function createPopMaterial() {
       spinSpeed: {
         value: 0,
       },
+      lightFactor: { value: 0 },
+      lightIntesity: { value: 1 },
     },
     depthWrite: false,
     depthTest: true,
     transparent: true,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.CustomBlending,
+    blendEquation: THREE.AddEquation,
+    blendSrc: THREE.OneFactor,
+    blendDst: THREE.OneMinusSrcAlphaFactor,
   });
 }
 
@@ -104,11 +109,16 @@ export function createTrailMaterial() {
       spinSpeed: {
         value: 0,
       },
+      lightFactor: { value: 0 },
+      lightIntesity: { value: 1 },
     },
     depthWrite: false,
     depthTest: true,
     transparent: true,
-    blending: THREE.NormalBlending,
+    blending: THREE.CustomBlending,
+    blendEquation: THREE.AddEquation,
+    blendSrc: THREE.OneFactor,
+    blendDst: THREE.OneMinusSrcAlphaFactor,
   });
 }
 

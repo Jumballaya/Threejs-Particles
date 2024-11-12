@@ -43,6 +43,7 @@ export class FireworksApp extends App {
       angularVariance: Math.PI / 8,
       drag: 0.1,
       spinSpeed: Math.PI,
+      attractors: [],
     };
     const trailEmitter = new ParticleEmitter(trailEmitterParams);
 
@@ -61,6 +62,7 @@ export class FireworksApp extends App {
         angularVariance: 0,
         drag: 0.1,
         spinSpeed: Math.PI / 8,
+        attractors: [],
       };
       const smokeEmitter = new ParticleEmitter(
         smokeEmitterParams,
@@ -108,6 +110,7 @@ export class FireworksApp extends App {
       angularVariance: 2 * Math.PI,
       drag: 1,
       spinSpeed: Math.PI,
+      attractors: [],
     };
     const popEmitter = new ParticleEmitter(
       popEmitterParams,
